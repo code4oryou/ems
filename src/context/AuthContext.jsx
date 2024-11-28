@@ -1,7 +1,11 @@
-import { createContext, useContext, useState } from "react";
+import React from "react";
 
-const AuthContext = createContext();
+const AuthContext = ({ children }) => {
+    return (
+        <div>
+            {children}
+        </div>
+    )
+}
 
-export const useAuth = () => {
-    return useContext(AuthContext);
-};
+export default AuthContext;
