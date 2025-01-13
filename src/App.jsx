@@ -4,6 +4,7 @@ import EmployeeDashboard from './components/Dashboard/EmployeeDashboard'
 import AdminDashboard from './components/Dashboard/AdminDashboard'
 import { getLocalStorage, setLocalStorage } from './utils/localStorage'
 import { AuthContext } from './context/AuthProvider'
+import { data } from 'autoprefixer'
 
 const App = () => {
 
@@ -11,12 +12,15 @@ const App = () => {
   const [loggedInUserData, setLoggedInUserData] = useState(null)
   const authData = useContext(AuthContext)
 
-  // useEffect(() => {
-  //   const loggedInUser = localStorage.getItem("loggedInUser")
-  //   if (loggedInUser) {
-  //     setUser(loggedInUser.role)
-  //   }
-  // }, [authData]);
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("loggedInUser")
+
+    if (loggedInUser) {
+      const userData = JSON.parse(loggedInUser)
+      setUser(userData.role)
+      setLoggedInUserData(userData.data)
+    }
+  }, []);
 
 
   const handleLogin = (email, password) => {
@@ -28,7 +32,7 @@ const App = () => {
       if (employee) {
         setUser('employee')
         setLoggedInUserData(employee)
-        localStorage.setItem('loggedInUser', JSON.stringify({ role: 'employee' }))
+        localStorage.setItem('loggedInUser', JSON.stringify({ role: 'employee', data: employee }))
       }
     } else {
       alert("invalid")
