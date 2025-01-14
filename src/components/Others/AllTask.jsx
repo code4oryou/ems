@@ -1,38 +1,33 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AuthContext } from '../../context/AuthProvider'
 
 const AllTask = () => {
+
+    const authData = useContext(AuthContext)
+
     return (
-        <div id='tasklist' className='p-5 bg-[#1c1c1c] mt-7 rounded h-48 overflow-auto'>
+        <div className='p-5 bg-[#1c1c1c] mt-7 rounded'>
+
             <div className='flex justify-between py-2 px-4 rounded mb-2 bg-red-400'>
-                <h2 className=''>Ayush</h2>
-                <h3>Make UI design</h3>
-                <h5>Status</h5>
+                <h2 className='text-lg font-medium w-1/5'>Employee Name</h2>
+                <h3 className='text-lg font-medium w-1/5'>New Task</h3>
+                <h5 className='text-lg font-medium w-1/5'>Active Task</h5>
+                <h5 className='text-lg font-medium w-1/5'>Completed</h5>
+                <h5 className='text-lg font-medium w-1/5'>Failed</h5>
             </div>
-            <div className='flex justify-between py-2 px-4 rounded mb-2 bg-green-400'>
-                <h2 className=''>Ayush</h2>
-                <h3>Make UI design</h3>
-                <h5>Status</h5>
+
+            <div className=''>
+                {authData.employees.map(function (elem) {
+                    return <div className='border-2 border-emerald-500 flex justify-between py-2 px-4 rounded mb-2'>
+                        <h2 className='text-lg font-medium w-1/5'>{elem.firstName}</h2>
+                        <h3 className='text-lg font-medium w-1/5 text-blue-400'>{elem.taskCounts.newTask}</h3>
+                        <h5 className='text-lg font-medium w-1/5 text-yellow-300'>{elem.taskCounts.active}</h5>
+                        <h5 className='text-lg font-medium w-1/5 text-white'>{elem.taskCounts.completed}</h5>
+                        <h5 className='text-lg font-medium w-1/5 text-red-400'>{elem.taskCounts.failed}</h5>
+                    </div>
+                })}
             </div>
-            <div className='flex justify-between py-2 px-4 rounded mb-2 bg-blue-400'>
-                <h2 className=''>Ayush</h2>
-                <h3>Make UI design</h3>
-                <h5>Status</h5>
-            </div>
-            <div className='flex justify-between py-2 px-4 rounded mb-2 bg-purple-400'>
-                <h2 className=''>Ayush</h2>
-                <h3>Make UI design</h3>
-                <h5>Status</h5>
-            </div>
-            <div className='flex justify-between py-2 px-4 rounded mb-2 bg-yellow-400'>
-                <h2 className=''>Ayush</h2>
-                <h3>Make UI design</h3>
-                <h5>Status</h5>
-            </div>
-            <div className='flex justify-between py-2 px-4 rounded mb-2 bg-violet-400'>
-                <h2 className=''>Ayush</h2>
-                <h3>Make UI design</h3>
-                <h5>Status</h5>
-            </div>
+
         </div>
     )
 }
