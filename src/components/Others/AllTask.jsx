@@ -17,8 +17,8 @@ const AllTask = () => {
             </div>
 
             <div className=''>
-                {authData.employees.map(function (elem) {
-                    return <div className='border-2 border-emerald-500 flex justify-between py-2 px-4 rounded mb-2'>
+                {authData.employees.map(function (elem, idx) {
+                    return <div key={idx} className='border-2 border-emerald-500 flex justify-between py-2 px-4 rounded mb-2'>
                         <h2 className='text-lg font-medium w-1/5'>{elem.firstName}</h2>
                         <h3 className='text-lg font-medium w-1/5 text-blue-400'>{elem.taskCounts.newTask}</h3>
                         <h5 className='text-lg font-medium w-1/5 text-yellow-300'>{elem.taskCounts.active}</h5>
