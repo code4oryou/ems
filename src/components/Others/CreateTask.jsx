@@ -8,6 +8,8 @@ const CreateTask = () => {
     const [assignTo, setAssignTo] = useState('')
     const [category, setCategory] = useState('')
 
+    const [Task, setTask] = useState([])
+
     const submitHandler = (e) => {
         e.preventDefault()
         setTaskDate("")
